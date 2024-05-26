@@ -1,0 +1,121 @@
+<% layout('/layout/boilerplate') -%>
+  <body>
+    <!-- we are using flash message successMsg -->
+    <% if (successMsg && successMsg.length) { %>
+      <div class="alert alert-success alert-dismissible fade show" role="alert" style="color: green;font-weight: bolder;"><%= successMsg %> <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>
+     
+    <% } %>
+    <% if (errorMsg && errorMsg.length) { %>
+      <div class="alert alert-danger alert-dismissible fade show" role="alert" style="color: brown;font-weight: bolder;"><%= errorMsg %> <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>
+     
+    <% } %>
+    <style>
+      #filters{
+         display: flex;
+         gap: 60px;
+         flex-wrap: wrap;
+         width: 100%;
+      }
+      .filter{
+        text-align: center;
+        margin-top: 1.5rem;
+        opacity: 0.7;
+      }
+      .filter:hover{
+        opacity: 1;
+        cursor:pointer;
+      }
+      .tax-info{
+        display: none;
+      }
+      .tax-toggle{
+        border: 1px solid black;
+        height: 45px;
+        padding: 8px;
+        margin-top: 26px;
+        border-radius: 1rem;
+        margin-left: 140px;
+      }
+    </style>
+   <div id="filters">
+      <div class="filter">
+        <div><i class="fa-solid fa-fire fa-lg"></i></div>
+        <p>Trending</p>
+      </div>
+      <div class="filter">
+        <div><i class="fa-solid fa-bed fa-lg"></i></div>
+        <p>Rooms</p>
+      </div>
+      <div class="filter">
+        <div><i class="fa-solid fa-monument fa-lg"></i></div>
+        <p>Top Cities</p>
+      </div>
+      <div class="filter">
+        <div><i class="fa-brands fa-fort-awesome fa-lg"></i></div>
+        <p>Castles</p>
+      </div>
+      <div class="filter">
+        <div><i class="fa-solid fa-house-flag fa-lg"></i></div>
+        <p>Cabins</p>
+      </div>
+      <div class="filter">
+        <div><i class="fa-solid fa-tractor fa-lg"></i></div>
+        <p>Farms</p>
+      </div>
+      <div class="filter">
+        <div><i class="fa-solid fa-umbrella-beach fa-lg"></i></div>
+        <p>Beach</p>
+      </div>
+      <div class="filter">
+        <div><i class="fa-solid fa-mountain-sun fa-lg"></i></div>
+        <p>Mountains</p>
+      </div>
+      <div class="tax-toggle">
+      <div class="form-check-reverse form-switch">
+        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+        <label class="form-check-label" for="flexSwitchCheckDefault">Display Total After Taxes</label>
+      </div></div>
+   </div>
+    <!-- <h3>All Listings</h3> -->
+    <!-- as we have added it in navbar not required -->
+    <!-- <form method="GET" action="/listings/new">
+      <button>Create New Listing</button>
+    </form> -->
+    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3">
+    <% for(let listing of allListings) { %>
+    <div class="card col listing-card" >
+      <img src="<%= listing.image.url %>" class="card-img-top" alt="...">
+      <div class="card-img-overlay"></div>
+      <div class="card-body">
+        <h5 class="card-title"><%= listing.title %></h5>
+        <p class="card-text"><%= listing.description %></p>
+      </div>
+      <ul class="list-group list-group-flush">
+        <% if (listing && listing.price !== null) { %>
+        <li class="list-group-item">&#8377; <%= listing.price.toLocaleString("en-IN") %>/ night <i class="tax-info">&nbsp; +18% GST</i></li>  <% }%>
+        <li class="list-group-item"><%= listing.location %> &nbsp;, <%= listing.country %></li>
+        <li class="list-group-item"><form action="/listings/<%= listing._id %>"><button class="btn btn-dark">Show In Detail</button></form></li>
+      </ul>
+    </div>
+    <% } %>
+  </div>
+    <!-- # has been only used for commenting below  -->
+    <!-- <ul>
+      <%# for(let listing of allListings) { %>
+        <li><a href="/listing/<%#= listing.id %>"><%#= listing.title %><a></li>
+    </ul>-->
+  </body>
+<script>
+  let taxSwitch = document.getElementById("flexSwitchCheckDefault");
+taxSwitch.addEventListener("change", () => {
+  let taxInfo = document.querySelectorAll(".tax-info");
+  taxInfo.forEach(info => {
+    if (info.style.display !== "inline") {
+      info.style.display = "inline";
+    } else {
+      info.style.display = "none";
+    }
+  });
+});
+
+</script>

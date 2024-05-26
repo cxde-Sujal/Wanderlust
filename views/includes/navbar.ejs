@@ -1,0 +1,42 @@
+<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top" >
+  <div class="container-fluid">
+    <!--logo --><a class="navbar-brand" href="/"><i class="fa-solid fa-plane-departure"></i></a>  <!--logo ends-->
+    <!--search bar -->
+    <nav class="search navbar bg-body-light">
+        <div class="container-fluid">
+          <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search Destination" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
+        </div>
+      </nav>
+      <!--search bar ends -->
+      <!--links -->
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link " href="/listings">Explore</a>
+        <!-- <a class="nav-link" href="/listings">Listings</a> -->
+        <a class="nav-link" href="/listings/new">Add Your Home</a>
+        <!-- <select name="" id="">
+          
+          <option value="" href="/signup"><a class="nav-link " href="/signup">Sign up</a></option>
+        <option value=""> <a class="nav-link" href="/login">Log in</a></option>
+        <option value=""><a class="nav-link" href="/logout">Log out</a></option>
+      </select> -->
+      <% if (!currUser) { %>
+        <a class="nav-link " href="/signup"><b>Signup</b></a>
+        <a class="nav-link" href="/login"><b>Login</b></a>
+      <% } %>
+        <% if (currUser) { %>
+          <a class="nav-link" href="/logout"><b>Logout</b></a>
+        <% } %>
+       
+      </div>
+      <!-- <div class="navbar-nav">
+        <a class="nav-link " href="/signup">Sign up</a>
+        <a class="nav-link" href="/login">Log in</a>
+        <a class="nav-link" href="/logout">Log out</a>
+      </div> -->
+    </div><!--links ends -->
+  </div>
+</nav>

@@ -1,0 +1,43 @@
+<% layout('/layout/boilerplate') -%>
+<div class="row mt-3">
+   <!-- we are using flash message successMsg -->
+  <% if (errorMsg && errorMsg.length) { %>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert" style="color: brown;font-weight: bolder;"><%= errorMsg %> <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>
+   
+  <% } %>
+    <h2 class="col-8 offset-4 mb-2">Login To WanderLust</h2>
+    <div class="col-6 offset-3 login">
+        <form action="/login" method="POST">
+            <div class="mb-3">
+                <label for="username" class="form-label" class="needs-validation" novalidate>Username:</label>
+                <input
+                  name="username"
+                  id="username"
+                  placeholder="Enter Username"
+                  type="text"
+                  class="form-control"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="password" class="form-label" class="needs-validation" novalidate>Password:</label>
+                <input
+                  name="password"
+                  id="password"
+                  placeholder="Enter Password"
+                  type="password"
+                  class="form-control"
+                  required
+                />
+              </div>
+              <button class="btn btn-success loginbtn">Login</button>
+        </form>
+        <div class="row mt-3">
+            <h3 style="margin-left: 320px;">OR</h3>
+              <form action="/signup" method="GET">
+                <button class="btn btn-dark logbtn">Create an account</button>
+              </form>
+        </div>
+        
+    </div>
+</div>
