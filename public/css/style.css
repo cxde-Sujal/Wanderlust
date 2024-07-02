@@ -8,8 +8,7 @@ body {
 }
 .navbar {
   height: 90px;
-  width: 100%;
-  background-color: lightblue;
+  background-color: #ebebeb;
 }
 .search {
   margin-left: 20%;
